@@ -105,8 +105,22 @@ body{
 /* ═══════════════════════════ LAYOUT SHELL ═══════════════════════════ */
 .shell{position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:0 24px}
 
+/* ═══════════════════════════ TOP ACTIONS ═══════════════════════════ */
+.top-actions{position:fixed;top:20px;right:20px;z-index:999;display:flex;align-items:center;gap:10px}
+.docs-link{
+  display:inline-flex;align-items:center;gap:6px;padding:9px 18px;
+  border-radius:100px;border:1px solid var(--card-border);
+  background:var(--card-bg);backdrop-filter:blur(20px);
+  color:var(--text);text-decoration:none;font-size:.82rem;font-weight:600;
+  letter-spacing:.3px;cursor:pointer;
+  transition:all .3s cubic-bezier(.4,0,.2,1);box-shadow:var(--shadow);
+  white-space:nowrap;
+}
+.docs-link:hover{border-color:var(--accent);box-shadow:0 0 20px var(--card-glow);transform:scale(1.05);color:var(--accent)}
+.docs-link svg{color:var(--accent);flex-shrink:0}
+
 /* ═══════════════════════════ THEME SWITCHER ═══════════════════════════ */
-.theme-sw{position:fixed;top:20px;right:20px;z-index:999}
+.theme-sw{position:relative}
 .theme-btn{
   width:42px;height:42px;border-radius:50%;border:1px solid var(--card-border);
   background:var(--card-bg);backdrop-filter:blur(20px);cursor:pointer;
@@ -155,7 +169,7 @@ body{
 }
 
 .theme-opt.active .theme-dot{border-color:var(--accent);box-shadow:0 0 8px var(--card-glow)}
-.dot-deepblue{background:linear-gradient(135deg,#38bdf8,#0ea5e9)}
+.dot-deepblue{background:linear-gradient(135deg,#1e3a5f,#0f172a)}
 .dot-dark{background:linear-gradient(135deg,#525252,#000000)}
 .dot-light{background:linear-gradient(135deg,#0ea5e9,#bae6fd)}
 
@@ -332,13 +346,19 @@ body{
 <div class="aurora aurora--2"></div>
 <div class="aurora aurora--3"></div>
 
-<!-- Theme Switcher -->
-<div class="theme-sw" id="themeSw">
-  <button class="theme-btn" id="themeBtn">🎨</button>
-  <div class="theme-pop">
-    <button class="theme-opt active" data-theme="light"><span class="theme-dot dot-light"></span>晴空蓝</button>
-    <button class="theme-opt" data-theme="deepblue"><span class="theme-dot dot-deepblue"></span>深海蓝</button>
-    <button class="theme-opt" data-theme="dark"><span class="theme-dot dot-dark"></span>极夜黑</button>
+<!-- Top Actions: Docs Link + Theme Switcher -->
+<div class="top-actions">
+  <a id="docsLink" class="docs-link" href="http://192.168.1.91:2380/docs/everythingai" target="_blank">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+    AI 认知升级指南
+  </a>
+  <div class="theme-sw" id="themeSw">
+    <button class="theme-btn" id="themeBtn">🎨</button>
+    <div class="theme-pop">
+      <button class="theme-opt active" data-theme="light"><span class="theme-dot dot-light"></span>晴空蓝</button>
+      <button class="theme-opt" data-theme="deepblue"><span class="theme-dot dot-deepblue"></span>深海蓝</button>
+      <button class="theme-opt" data-theme="dark"><span class="theme-dot dot-dark"></span>极夜黑</button>
+    </div>
   </div>
 </div>
 
@@ -347,6 +367,7 @@ body{
   <header class="hdr">
     <h1>AI 全景视界</h1>
     <p class="sub">汇聚全球顶尖 AI 资源与工具生态</p>
+
     <div class="search-wrap">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       <input type="text" id="searchInput" class="search-input" placeholder="搜索工具、博主或描述…">

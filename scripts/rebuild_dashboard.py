@@ -39,6 +39,14 @@ js_data = build_js_data(tools, bloggers, tool_cats, blogger_cats)
 template = TMPL.read_text("utf-8")
 html = template.replace("{{JS_DATA}}", js_data)
 
+# ── 4b. Inject Docsify URL ──
+docsify_cfg = DATA / "docsify.json"
+if docsify_cfg.exists():
+    dcfg = json.loads(docsify_cfg.read_text("utf-8"))
+    html = html.replace("{{DOCSIFY_URL}}", dcfg.get("docsify_url", "#"))
+else:
+    html = html.replace("{{DOCSIFY_URL}}", "#")
+
 # ── 5. Write output ──
 OUT.write_text(html, encoding="utf-8")
 
